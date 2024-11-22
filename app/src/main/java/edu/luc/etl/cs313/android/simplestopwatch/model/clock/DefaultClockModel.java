@@ -64,6 +64,16 @@ public class DefaultClockModel implements ClockModel {
         } catch (final IOException ex) {
             throw new RuntimeException(ex);
         }
+    }
 
+    @Override
+    public void stopAlarm() {
+        final MediaPlayer mediaPlayer = new MediaPlayer();
+        try{
+            mediaPlayer.stop();
+        }
+        catch (final Exception e){
+            throw new RuntimeException(e);
+        }
     }
 }

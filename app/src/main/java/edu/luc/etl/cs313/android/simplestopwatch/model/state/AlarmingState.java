@@ -12,6 +12,7 @@ class AlarmingState implements StopwatchState {
     public void onStartStop() {
         sm.actionStop();
         sm.actionReset();
+        sm.toStoppedState();
     }
     @Override
     public void onTick() {
