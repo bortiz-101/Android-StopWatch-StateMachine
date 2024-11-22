@@ -50,12 +50,16 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
     // known states
     private final StopwatchState STOPPED     = new StoppedState(this);
     private final StopwatchState RUNNING     = new RunningState(this);
+    private final StopwatchState INCREMENTING = new IncrementingState(this);
+    private final StopwatchState ALARMING     = new AlarmingState(this);
   //  private final StopwatchState LAP_RUNNING = new LapRunningState(this);
  //   private final StopwatchState LAP_STOPPED = new LapStoppedState(this);
 
     // transitions
     @Override public void toRunningState()    { setState(RUNNING); }
     @Override public void toStoppedState()    { setState(STOPPED); }
+    @Override public void toIncrementingState()  { setState(INCREMENTING); }
+    @Override public void toAlarmingState()   { setState(ALARMING); }
  //   @Override public void toLapRunningState() { setState(LAP_RUNNING); }
  //   @Override public void toLapStoppedState() { setState(LAP_STOPPED); }
 
