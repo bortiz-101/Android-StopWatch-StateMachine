@@ -16,6 +16,14 @@ class StoppedState implements StopwatchState {
         sm.toRunningState();
     }
 
+    @Override
+    public void onIncrement() {
+        sm.actionInc();
+        if (sm.getRuntime() >= 99) {
+            sm.actionReset();
+        }
+    }
+
 /*    @Override
     public void onLapReset() {
         sm.actionReset();

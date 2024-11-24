@@ -7,5 +7,6 @@ package edu.luc.etl.cs313.android.simplestopwatch.common;
  */
 public interface StopwatchUIListener {
     void onStartStop();
+    void onIncrement();
    // void onLapReset();
 }

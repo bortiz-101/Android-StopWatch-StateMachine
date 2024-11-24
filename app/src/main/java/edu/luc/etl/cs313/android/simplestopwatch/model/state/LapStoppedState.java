@@ -13,7 +13,7 @@ class LapStoppedState implements StopwatchState {
     @Override
     public void onStartStop() {
         sm.actionStart();
-        sm.toLapRunningState();
+        //sm.toLapRunningState();
     }
 
     @Override

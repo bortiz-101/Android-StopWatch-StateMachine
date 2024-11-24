@@ -34,16 +34,6 @@ public class ConcreteStopwatchModelFacade implements StopwatchModelFacade {
     }
 
     @Override
-    public void alarm() {
-
-    }
-
-    @Override
-    public void alarmStop() {
-
-    }
-
-    @Override
     public void setModelListener(final StopwatchModelListener listener) {
         stateMachine.setModelListener(listener);
     }
@@ -53,6 +43,10 @@ public class ConcreteStopwatchModelFacade implements StopwatchModelFacade {
         stateMachine.onStartStop();
     }
 
+    @Override
+    public void onIncrement() {
+        stateMachine.onIncrement();
+    }
    /* @Override
     public void onLapReset() {
         stateMachine.onLapReset();
