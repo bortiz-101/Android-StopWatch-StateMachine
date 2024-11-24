@@ -16,6 +16,7 @@ class AlarmingState implements StopwatchState {
     }
     @Override
     public void onTick() {
+        sm.toAlarmingState();
         sm.actionAlarm();
     }
 

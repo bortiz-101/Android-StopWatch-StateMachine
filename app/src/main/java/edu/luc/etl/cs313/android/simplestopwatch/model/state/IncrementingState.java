@@ -10,6 +10,7 @@ import edu.luc.etl.cs313.android.simplestopwatch.R;
 
      @Override
      public void onStartStop() {
+         sm.toIncrementingState();
          sm.actionInc();
      }
      @Override

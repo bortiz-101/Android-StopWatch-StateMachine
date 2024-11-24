@@ -89,7 +89,7 @@ public class StopwatchAdapter extends Activity implements StopwatchModelListener
         model.onStartStop();
     }
 
-    public void onLapReset(final View view)  {
+    /*public void onLapReset(final View view)  {
         model.onLapReset();
-    }
+    }*/
 }

@@ -1,4 +1,4 @@
-package edu.luc.etl.cs313.android.simplestopwatch.model.state;
+/*package edu.luc.etl.cs313.android.simplestopwatch.model.state;
 
 import edu.luc.etl.cs313.android.simplestopwatch.R;
 
@@ -36,4 +36,4 @@ class LapStoppedState implements StopwatchState {
     public int getId() {
         return R.string.LAP_STOPPED;
     }
-}
+}*/

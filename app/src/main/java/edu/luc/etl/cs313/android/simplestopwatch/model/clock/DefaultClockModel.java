@@ -1,8 +1,10 @@
 package edu.luc.etl.cs313.android.simplestopwatch.model.clock;
 
+
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
+import android.app.Activity;
 import android.content.Context;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
@@ -50,7 +52,7 @@ public class DefaultClockModel implements ClockModel {
     public void alarm(){
         final Uri defaultRingtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         final MediaPlayer mediaPlayer = new MediaPlayer();
-        //final Context context = getApplicationContext();
+        final Context context = getApplicationContext();
 
         try {
             mediaPlayer.setDataSource(context, defaultRingtoneUri);
@@ -75,5 +77,16 @@ public class DefaultClockModel implements ClockModel {
         catch (final Exception e){
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void increment() {
+        timer.schedule(new TimerTask() {
+            @Override public void run() {
+                // fire event
+                listener.onTick();
+            }
+        }, /*initial delay*/ 1000, /*periodic delay*/ 1000);
+
     }
 }
