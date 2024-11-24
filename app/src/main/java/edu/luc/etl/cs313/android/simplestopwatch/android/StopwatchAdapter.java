@@ -5,7 +5,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
+import android.content.Context;
+import android.media.AudioAttributes;
+import android.media.MediaPlayer;
+import android.media.RingtoneManager;
+import android.net.Uri;
 
+import java.io.IOException;
 import java.util.Locale;
 
 import edu.luc.etl.cs313.android.simplestopwatch.R;
@@ -92,4 +98,34 @@ public class StopwatchAdapter extends Activity implements StopwatchModelListener
     /*public void onLapReset(final View view)  {
         model.onLapReset();
     }*/
+
+    @Override
+    public void onAlarm(){
+        final Uri defaultRingtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        final MediaPlayer mediaPlayer = new MediaPlayer();
+        final Context context = getApplicationContext();
+
+        try {
+            mediaPlayer.setDataSource(context, defaultRingtoneUri);
+            mediaPlayer.setAudioAttributes(new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_ALARM)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                    .build());
+            mediaPlayer.prepare();
+            mediaPlayer.setOnCompletionListener(MediaPlayer::release);
+            mediaPlayer.start();
+        } catch (final IOException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+    @Override
+    public void onstopAlarm() {
+        final MediaPlayer mediaPlayer = new MediaPlayer();
+        try{
+            mediaPlayer.stop();
+        }
+        catch (final Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 }

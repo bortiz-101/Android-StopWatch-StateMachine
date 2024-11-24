@@ -2,7 +2,7 @@ package edu.luc.etl.cs313.android.simplestopwatch.model.clock;
 
 import edu.luc.etl.cs313.android.simplestopwatch.common.Startable;
 import edu.luc.etl.cs313.android.simplestopwatch.common.Stoppable;
-import edu.luc.etl.cs313.android.simplestopwatch.common.Alarm;
+
 
 
 /**
@@ -10,4 +10,4 @@ import edu.luc.etl.cs313.android.simplestopwatch.common.Alarm;
  *
  * @author laufer
  */
-public interface ClockModel extends Startable, Stoppable, TickSource, Alarm { }
+public interface ClockModel extends Startable, Stoppable, TickSource { }

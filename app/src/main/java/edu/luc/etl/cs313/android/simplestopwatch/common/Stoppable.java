@@ -7,4 +7,5 @@ package edu.luc.etl.cs313.android.simplestopwatch.common;
  */
 public interface Stoppable {
     void stop();
+    void alarmStop();
 }

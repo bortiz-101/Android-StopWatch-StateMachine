@@ -189,11 +189,6 @@ class UnifiedMockDependency implements TimeModel, ClockModel, StopwatchModelList
         started = false;
     }
 
-    @Override
-    public void alarm() { runningTime = 0;}
-
-    @Override
-    public void stopAlarm() { started = false;}
 
     @Override
     public void resetRuntime() {
