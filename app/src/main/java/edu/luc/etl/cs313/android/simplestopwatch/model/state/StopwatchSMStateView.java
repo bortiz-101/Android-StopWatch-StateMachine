@@ -22,6 +22,7 @@ interface StopwatchSMStateView {
     void actionStart();
     void actionStop();
     void actionAlarm();
+    void actionAlarmStop();
  //   void actionLap();
     void actionInc();
     void actionUpdateView();

@@ -34,6 +34,16 @@ public class ConcreteStopwatchModelFacade implements StopwatchModelFacade {
     }
 
     @Override
+    public void alarm() {
+
+    }
+
+    @Override
+    public void alarmStop() {
+
+    }
+
+    @Override
     public void setModelListener(final StopwatchModelListener listener) {
         stateMachine.setModelListener(listener);
     }
