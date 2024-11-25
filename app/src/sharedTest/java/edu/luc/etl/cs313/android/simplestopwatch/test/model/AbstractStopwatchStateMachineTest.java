@@ -175,6 +175,16 @@ class UnifiedMockDependency implements TimeModel, ClockModel, StopwatchModelList
     }
 
     @Override
+    public void onAlarm() {
+
+    }
+
+    @Override
+    public void onstopAlarm() {
+
+    }
+
+    @Override
     public void setTickListener(TickListener listener) {
         throw new UnsupportedOperationException();
     }
@@ -185,8 +195,18 @@ class UnifiedMockDependency implements TimeModel, ClockModel, StopwatchModelList
     }
 
     @Override
+    public void alarm() {
+
+    }
+
+    @Override
     public void stop() {
         started = false;
+    }
+
+    @Override
+    public void alarmStop() {
+
     }
 
 

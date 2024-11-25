@@ -56,14 +56,14 @@
             android:text="@string/startStop" />
 
         <Button
-            android:id="+id/incrementButton"
+            android:id="@+id/incrementButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onIncrement"
             android:text="Increment"
             android:layout_below="@id/startStop"
             android:layout_marginTop="10dp"
-            android:layout_centerHorizontal="true"
+            android:layout_centerHorizontal="true"/>
 
     </RelativeLayout>
 
