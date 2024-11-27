@@ -1,6 +1,7 @@
 package edu.luc.etl.cs313.android.simplestopwatch.model.state;
 
 import edu.luc.etl.cs313.android.simplestopwatch.R;
+import android.media.MediaPlayer;
 
 class AlarmingState implements StopwatchState {
     public AlarmingState(final StopwatchSMStateView sm) {
@@ -43,4 +44,8 @@ class AlarmingState implements StopwatchState {
     public int getId() {
         return R.string.ALARMING;
     }
+
+    private MediaPlayer mediaPlayer;
+
+
 }
