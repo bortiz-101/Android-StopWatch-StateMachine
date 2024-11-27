@@ -37,11 +37,13 @@ class StoppedState implements StopwatchState {
 
     @Override
     public void onIncrement() {
+        sm.actionInc();
 
     }
 
     @Override
     public void onDecrement() {
+        sm.actionDec();
 
     }
 
