@@ -9,8 +9,8 @@ import java.util.function.BooleanSupplier;
 public class DefaultTimeModel implements TimeModel {
 
     private int runningTime = 0;
-    private int min;
-    private int max;
+    private final int min;
+    private final int max;
     private int value;
 
     public DefaultTimeModel() {
@@ -25,7 +25,7 @@ public class DefaultTimeModel implements TimeModel {
         this.value = min;
     }
 
-    private int lapTime = -1;
+    //private int lapTime = -1;
 
     @Override
     public void resetRuntime() {
@@ -42,15 +42,15 @@ public class DefaultTimeModel implements TimeModel {
         return runningTime;
     }
 
-    @Override
-    public void setLaptime() {
-        lapTime = runningTime;
-    }
+//    @Override
+//    public void setLaptime() {
+//        lapTime = runningTime;
+//    }
 
-    @Override
-    public int getLaptime() {
-        return lapTime;
-    }
+//    //@Override
+//    //public int getLaptime() {
+//        return lapTime;
+//    }
 
     protected boolean dataInvariant() {
         return min <= value && value <= max;
@@ -59,14 +59,18 @@ public class DefaultTimeModel implements TimeModel {
     @Override
     public void increment() {
         assertIfDebug(() -> dataInvariant() && !isFull());
-        ++value;
+        if (!isFull()) {
+            ++value;
+         }
         assertIfDebug(this::dataInvariant);
     }
 
     @Override
     public void decrement() {
         assertIfDebug(() -> dataInvariant() && !isEmpty());
-        --value;
+        if(!isFull()) { //Makes sure value doesn't go out of bounds
+            --value;
+        }
         assertIfDebug(this::dataInvariant);
     }
 
@@ -86,10 +90,10 @@ public class DefaultTimeModel implements TimeModel {
     }
 
     protected void assertIfDebug(final BooleanSupplier p) {
-    /*
-    if (BuildConfig.DEBUG && !p.getAsBoolean()) {
-      throw new AssertionError();
 
-     */
+//    if (BuildConfig.DEBUG && !p.getAsBoolean()) {
+//      throw new AssertionError();
+
+
     }
 }

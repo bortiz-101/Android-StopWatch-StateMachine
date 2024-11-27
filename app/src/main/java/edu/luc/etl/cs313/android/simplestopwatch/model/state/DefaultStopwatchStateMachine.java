@@ -46,12 +46,12 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
 
     @Override
     public void onIncrement() {
-
+        actionInc();
     }
 
     @Override
     public void onDecrement() {
-
+        actionDec();
     }
     //@Override public synchronized void onIncrement() { state.onIncrement(); }
 

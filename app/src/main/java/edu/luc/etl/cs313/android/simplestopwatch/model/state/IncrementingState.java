@@ -20,12 +20,12 @@ import edu.luc.etl.cs313.android.simplestopwatch.R;
 
      @Override
      public void onIncrement() {
-
+            sm.actionInc();
      }
 
      @Override
      public void onDecrement() {
-
+        sm.actionDec();
      }
 
      @Override
