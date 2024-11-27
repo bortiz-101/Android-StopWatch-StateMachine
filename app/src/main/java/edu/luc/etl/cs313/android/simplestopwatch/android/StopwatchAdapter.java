@@ -92,8 +92,9 @@ public class StopwatchAdapter extends Activity implements StopwatchModelListener
 
     // forward event listener methods to the model
     public void onStartStop(final View view) {
-        model.onStartStop();
+        model.increment();
     }
+
 
 /*    public void onIncrement(final View view) {
         model.onIncrement();

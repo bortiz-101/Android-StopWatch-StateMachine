@@ -35,6 +35,7 @@ public class DefaultClockModel implements ClockModel {
         timer.schedule(new TimerTask() {
             @Override public void run() {
                 // fire event
+
                 listener.onTick();
             }
         }, /*initial delay*/ 1000, /*periodic delay*/ 1000);
@@ -51,6 +52,31 @@ public class DefaultClockModel implements ClockModel {
 
     }
 
+    @Override
+    public void increment(){
+        timer = new Timer();
+        // The clock model runs onTick every 1000 milliseconds
+        timer.schedule(new TimerTask() {
+            @Override public void run() {
+                // fire event
+
+                listener.onIncrement();
+            }
+        }, /*initial delay*/ 0, /*periodic delay*/ 0);
+    }
+
+    @Override
+    public void decrement(){
+        timer = new Timer();
+        // The clock model runs onTick every 1000 milliseconds
+        timer.schedule(new TimerTask() {
+            @Override public void run() {
+                // fire event
+
+                listener.onDecrement();
+            }
+        }, /*initial delay*/ 3000, /*periodic delay*/ 0);
+    }
     @Override
     public void alarmStop() {
 

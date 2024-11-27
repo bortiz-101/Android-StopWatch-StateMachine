@@ -25,6 +25,8 @@ interface StopwatchSMStateView {
     void actionAlarmStop();
  //   void actionLap();
     void actionInc();
+    void actionDec();
+    void actionGet();
     void actionUpdateView();
 
     // state-dependent UI updates

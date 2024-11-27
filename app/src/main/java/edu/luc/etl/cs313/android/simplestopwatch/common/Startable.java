@@ -8,4 +8,6 @@ package edu.luc.etl.cs313.android.simplestopwatch.common;
 public interface Startable {
     void start();
     void alarm();
+    void increment();
+    void decrement();
 }

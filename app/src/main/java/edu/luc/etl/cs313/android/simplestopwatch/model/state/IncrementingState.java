@@ -19,6 +19,16 @@ import edu.luc.etl.cs313.android.simplestopwatch.R;
      }
 
      @Override
+     public void onIncrement() {
+
+     }
+
+     @Override
+     public void onDecrement() {
+
+     }
+
+     @Override
      public void updateView() {
          sm.updateUIRuntime();
      }

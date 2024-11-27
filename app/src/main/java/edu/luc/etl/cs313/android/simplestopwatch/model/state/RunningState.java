@@ -29,6 +29,16 @@ class RunningState implements StopwatchState {
     }
 
     @Override
+    public void onIncrement() {
+
+    }
+
+    @Override
+    public void onDecrement() {
+
+    }
+
+    @Override
     public void updateView() {
         sm.updateUIRuntime();
     }
