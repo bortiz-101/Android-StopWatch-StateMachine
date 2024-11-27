@@ -21,16 +21,16 @@ jacocoAndroidUnitTestReport {
 }
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 30
     buildToolsVersion "31.0.0"
 
     defaultConfig {
-        applicationId "edu.luc.etl.cs313.android.stopwatch"
+        applicationId "edu.luc.etl.cs313.android.clickcounter"
         minSdkVersion 23
-        targetSdkVersion 31
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         debug {
@@ -61,25 +61,11 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.annotation:annotation:1.3.0'
-    implementation 'androidx.core:core:1.15.0'
-
     // several duplications on account of shared testcase superclass
-    testImplementation 'junit:junit:4.13.2'
-    testImplementation 'androidx.test:rules:1.4.0'
-    testImplementation 'org.robolectric:robolectric:4.8'
-    androidTestImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test:rules:1.4.0'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-}
-
-task javadoc(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-}
-
-afterEvaluate {
-    javadoc.classpath += files(android.applicationVariants.collect { variant ->
-        variant.javaCompileProvider.get().classpath.files
-    })
+    testImplementation 'junit:junit:4.13'
+    testImplementation 'com.android.support.test:rules:1.0.2'
+    testImplementation 'org.robolectric:robolectric:4.4'
+    androidTestImplementation 'junit:junit:4.13'
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
 }
