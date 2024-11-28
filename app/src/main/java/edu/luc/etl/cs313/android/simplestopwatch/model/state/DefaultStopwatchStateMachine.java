@@ -52,7 +52,7 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
     private final StopwatchState RUNNING     = new RunningState(this);
     private final StopwatchState INCREMENTING = new IncrementingState(this);
     private final StopwatchState ALARMING     = new AlarmingState(this);
-    private final StopwatchState SETTING      = new SettingState(this);
+    private final StopwatchState TIMING      = new TimingState(this);
 
 
     // transitions
@@ -60,7 +60,7 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
     @Override public void toStoppedState()    { setState(STOPPED); }
     @Override public void toIncrementingState()  { setState(INCREMENTING); }
     @Override public void toAlarmingState()   { setState(ALARMING); }
-    @Override public void toSettingState()    { setState(SETTING); }
+    @Override public void toTimingState()    { setState(TIMING); }
 
     // actions
     @Override public void actionInit()       { toStoppedState(); actionReset(); }

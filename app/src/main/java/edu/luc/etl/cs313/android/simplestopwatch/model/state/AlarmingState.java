@@ -12,14 +12,13 @@ class AlarmingState implements StopwatchState {
     @Override
     public void onStartStop() {
         sm.actionOnStopAlarm();
-        sm.actionStop();
         sm.actionReset();
         sm.toStoppedState();
     }
     @Override
     public void onTick() {
-        sm.toAlarmingState();
-        //sm.actionAlarm();
+        throw new UnsupportedOperationException("onTick");
+
     }
 
     @Override
@@ -32,7 +31,6 @@ class AlarmingState implements StopwatchState {
         return R.string.ALARMING;
     }
 
-    private MediaPlayer mediaPlayer;
 
 
 }

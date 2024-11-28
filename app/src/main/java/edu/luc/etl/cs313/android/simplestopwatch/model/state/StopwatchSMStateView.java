@@ -13,7 +13,7 @@ interface StopwatchSMStateView {
     void toStoppedState();
     void toIncrementingState();
     void toAlarmingState();
-    void toSettingState();
+    void toTimingState();
 
     // actions
     void actionInit();
