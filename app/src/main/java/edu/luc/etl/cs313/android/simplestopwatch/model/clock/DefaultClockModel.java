@@ -47,12 +47,8 @@ public class DefaultClockModel implements ClockModel {
         timer.cancel();
     }
 
-    @Override
-    public void alarm() {
 
-    }
-
-    @Override
+   /* @Override
     public void initializeTime(int value) {
 
     }
@@ -66,7 +62,7 @@ public class DefaultClockModel implements ClockModel {
     @Override
     public void alarmStop() {
 
-    }
+    }*/
 
 
 }

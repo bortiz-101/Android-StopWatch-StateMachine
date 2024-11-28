@@ -204,20 +204,6 @@ class UnifiedMockDependency implements TimeModel, ClockModel, StopwatchModelList
         started = true;
     }
 
-    @Override
-    public void alarm() {
-
-    }
-
-    @Override
-    public void initializeTime(int value) {
-
-    }
-
-    @Override
-    public boolean isInitialState() {
-        return false;
-    }
 
     @Override
     public void stop() {

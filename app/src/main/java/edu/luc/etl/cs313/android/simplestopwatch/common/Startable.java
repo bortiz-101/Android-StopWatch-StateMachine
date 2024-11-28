@@ -7,7 +7,4 @@ package edu.luc.etl.cs313.android.simplestopwatch.common;
  */
 public interface Startable {
     void start();
-    void alarm();
-    void initializeTime(int value);
-    boolean isInitialState();
 }

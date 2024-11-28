@@ -23,6 +23,7 @@ import edu.luc.etl.cs313.android.simplestopwatch.common.StopwatchModelListener;
 import edu.luc.etl.cs313.android.simplestopwatch.model.ConcreteStopwatchModelFacade;
 import edu.luc.etl.cs313.android.simplestopwatch.model.StopwatchModelFacade;
 
+
 /**
  * A thin adapter component for the stopwatch.
  *
@@ -107,7 +108,7 @@ public class StopwatchAdapter extends Activity implements StopwatchModelListener
 
     // forward event listener methods to the model
     public void onStartStop(final View view) {
-        model.onIncrement();
+        model.onStartStop();
     }
 
     @Override
