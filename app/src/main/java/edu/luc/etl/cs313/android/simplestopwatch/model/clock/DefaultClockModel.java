@@ -35,7 +35,6 @@ public class DefaultClockModel implements ClockModel {
         timer.schedule(new TimerTask() {
             @Override public void run() {
                 // fire event
-
                 listener.onTick();
             }
         }, /*initial delay*/ 1000, /*periodic delay*/ 1000);

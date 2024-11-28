@@ -20,6 +20,15 @@ import static edu.luc.etl.cs313.android.simplestopwatch.common.Constants.MAX_RUN
              movetoNextState();
          }
      }
+     @Override
+     public void onTick() {
+         isStarted = true;
+         secPassed++;
+
+         if(secPassed >= 3 && sm.actionGetRuntime() > 0  ){
+             movetoNextState();
+         }
+     }
 
      private void movetoNextState(){
          if(isStarted){
@@ -32,15 +41,7 @@ import static edu.luc.etl.cs313.android.simplestopwatch.common.Constants.MAX_RUN
          sm.actionStart();
 
      }
-     @Override
-     public void onTick() {
-         isStarted = true;
-         secPassed++;
 
-         if(secPassed >= 3 && sm.actionGetRuntime() > 0  ){
-             movetoNextState();
-         }
-     }
 
      @Override
      public void updateView() {

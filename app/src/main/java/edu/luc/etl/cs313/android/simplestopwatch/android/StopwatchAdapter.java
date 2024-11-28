@@ -86,10 +86,7 @@ public class StopwatchAdapter extends Activity implements StopwatchModelListener
         // UI adapter responsibility to schedule incoming events on UI thread
         runOnUiThread(() -> {
             final TextView tvS = findViewById(R.id.seconds);
-            //final TextView tvM = findViewById(R.id.minutes);
             final var locale = Locale.getDefault();
-           // tvS.setText(String.format(locale,"%02d", time % Constants.SEC_PER_MIN));
-            //tvM.setText(String.format(locale,"%02d", time / Constants.SEC_PER_MIN));
             tvS.setText(String.format(locale,"%02d", time ));
         });
     }
@@ -136,8 +133,8 @@ public class StopwatchAdapter extends Activity implements StopwatchModelListener
 
 
 
-    @Override
-    public void playNotification(){
+
+    protected void playNotification(){
         final Uri defaultRingtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         final MediaPlayer mediaPlayer = new MediaPlayer();
         final Context context = getApplicationContext();

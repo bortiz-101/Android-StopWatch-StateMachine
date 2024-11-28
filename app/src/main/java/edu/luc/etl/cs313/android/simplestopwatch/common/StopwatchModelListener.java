@@ -13,5 +13,5 @@ public interface StopwatchModelListener {
     void onAlarm();
     void onStopAlarm();
     void onBeep();
-    void playNotification();
+    //void playNotification();
 }

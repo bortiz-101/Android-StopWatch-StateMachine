@@ -47,12 +47,13 @@ public class ConcreteStopwatchModelFacade implements StopwatchModelFacade {
 
     @Override
     public void initializeTime(int value) {
+        stateMachine.actionSetRuntime(value);
 
     }
 
     @Override
     public boolean isInitialState() {
-        return false;
+        return stateMachine.isStopped();
     }
 
 }
