@@ -48,21 +48,4 @@ public class DefaultClockModel implements ClockModel {
     }
 
 
-   /* @Override
-    public void initializeTime(int value) {
-
-    }
-
-    @Override
-    public boolean isInitialState() {
-        return false;
-    }
-
-
-    @Override
-    public void alarmStop() {
-
-    }*/
-
-
 }

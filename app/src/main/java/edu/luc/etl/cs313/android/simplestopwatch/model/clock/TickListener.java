@@ -7,6 +7,5 @@ package edu.luc.etl.cs313.android.simplestopwatch.model.clock;
  */
 public interface TickListener {
     void onTick();
-    void onIncrement();
-    void onDecrement();
+    void onStartStop();
 }
