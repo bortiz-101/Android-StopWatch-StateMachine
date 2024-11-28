@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_height="match_parent">
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter Initial Time"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            />
+        <EditText
+                android:id="@+id/etInitialValue"
+                android:layout_width="match_parent"
+                android:inputType="number"
+                android:textSize="28sp"
+                android:digits="0123456789"
+                android:maxLength="2"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="#03A9F4"
+                android:layout_height="80dp">
+
+            <requestFocus/>
+        </EditText>
+    </LinearLayout>
+</LinearLayout>

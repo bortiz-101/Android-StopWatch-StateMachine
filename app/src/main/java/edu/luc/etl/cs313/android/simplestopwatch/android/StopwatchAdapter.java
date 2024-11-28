@@ -6,16 +6,19 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 import android.content.Context;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.view.LayoutInflater;
+import android.widget.EditText;
 
 import java.io.IOException;
 import java.util.Locale;
 
 import edu.luc.etl.cs313.android.simplestopwatch.R;
-import edu.luc.etl.cs313.android.simplestopwatch.common.Constants;
 import edu.luc.etl.cs313.android.simplestopwatch.common.StopwatchModelListener;
 import edu.luc.etl.cs313.android.simplestopwatch.model.ConcreteStopwatchModelFacade;
 import edu.luc.etl.cs313.android.simplestopwatch.model.StopwatchModelFacade;
@@ -33,6 +36,7 @@ public class StopwatchAdapter extends Activity implements StopwatchModelListener
      * The state-based dynamic model.
      */
     private StopwatchModelFacade model;
+    private MediaPlayer mediaPlayer;
 
     protected void setModel(final StopwatchModelFacade model) {
         this.model = model;
@@ -43,10 +47,20 @@ public class StopwatchAdapter extends Activity implements StopwatchModelListener
         super.onCreate(savedInstanceState);
         // inject dependency on view so this adapter receives UI events
         setContentView(R.layout.activity_main);
+        //initial notification
+        playNotification();
         // inject dependency on model into this so model receives UI events
         this.setModel(new ConcreteStopwatchModelFacade());
         // inject dependency on this into model to register for UI updates
         model.setModelListener(this);
+        findViewById(R.id.seconds).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                if (model.isInitialState()){
+                    showInputDialog();
+                }
+            }
+        });
     }
 
     @Override
@@ -70,11 +84,12 @@ public class StopwatchAdapter extends Activity implements StopwatchModelListener
     public void onTimeUpdate(final int time) {
         // UI adapter responsibility to schedule incoming events on UI thread
         runOnUiThread(() -> {
-            //final TextView tvS = findViewById(R.id.seconds);
-            final TextView tvM = findViewById(R.id.minutes);
+            final TextView tvS = findViewById(R.id.seconds);
+            //final TextView tvM = findViewById(R.id.minutes);
             final var locale = Locale.getDefault();
            // tvS.setText(String.format(locale,"%02d", time % Constants.SEC_PER_MIN));
-            tvM.setText(String.format(locale,"%02d", time / Constants.SEC_PER_MIN));
+            //tvM.setText(String.format(locale,"%02d", time / Constants.SEC_PER_MIN));
+            tvS.setText(String.format(locale,"%02d", time ));
         });
     }
 
@@ -92,20 +107,36 @@ public class StopwatchAdapter extends Activity implements StopwatchModelListener
 
     // forward event listener methods to the model
     public void onStartStop(final View view) {
-        model.increment();
+        model.onIncrement();
+    }
+
+    @Override
+    public void onBeep(int resource, boolean isRepeat){
+        playSound(R.raw.beep, false);
+    }
+
+    @Override
+    public void onAlarm() {
+        playSound(R.raw.alarm, true);
+    }
+
+    protected void playSound(int resource, boolean isRepeat){
+        mediaPlayer = MediaPlayer.create(this, resource);
+        mediaPlayer.setLooping(isRepeat);
+        mediaPlayer.start();
+    }
+
+    @Override
+    public void onStopAlarm() {
+        if(mediaPlayer.isPlaying() && mediaPlayer != null){
+            mediaPlayer.stop();
+        }
     }
 
 
-/*    public void onIncrement(final View view) {
-        model.onIncrement();
-    }*/
-
-    /*public void onLapReset(final View view)  {
-        model.onLapReset();
-    }*/
 
     @Override
-    public void onAlarm(){
+    public void playNotification(){
         final Uri defaultRingtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         final MediaPlayer mediaPlayer = new MediaPlayer();
         final Context context = getApplicationContext();
@@ -123,14 +154,35 @@ public class StopwatchAdapter extends Activity implements StopwatchModelListener
             throw new RuntimeException(ex);
         }
     }
-    @Override
-    public void onstopAlarm() {
-        final MediaPlayer mediaPlayer = new MediaPlayer();
-        try{
-            mediaPlayer.stop();
-        }
-        catch (final Exception e){
-            throw new RuntimeException(e);
-        }
+
+    // show dialog to take initial value for the time
+    private void showInputDialog() {
+        LayoutInflater li = LayoutInflater.from(this);
+        View promptsView = li.inflate(R.layout.input_dialog_box, null);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setView(promptsView);
+        EditText userInput = promptsView.findViewById(R.id.etInitialValue); // Input field for time.
+        alertDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        try {
+                            String entryValue = userInput.getText().toString();
+                            int time = Integer.parseInt(entryValue);
+                            model.initializeTime(time); // Initializes the countdown time.
+                            onTimeUpdate(time); // Updates the UI with the new time.
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace(); // Logs an error if parsing fails.
+                        }
+                    }
+                })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel(); // Cancels the dialog without any action.
+                            }
+                        });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show(); // Displays the dialog to the user.
     }
 }

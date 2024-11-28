@@ -65,14 +65,15 @@ public class ConcreteStopwatchModelFacade implements StopwatchModelFacade {
     }
 
     @Override
-    public void increment() {
+    public void initializeTime(int value) {
 
     }
 
     @Override
-    public void decrement() {
-
+    public boolean isInitialState() {
+        return false;
     }
+
 
    /* @Override
     public void onLapReset() {

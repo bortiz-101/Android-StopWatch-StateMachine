@@ -180,7 +180,17 @@ class UnifiedMockDependency implements TimeModel, ClockModel, StopwatchModelList
     }
 
     @Override
-    public void onstopAlarm() {
+    public void onStopAlarm() {
+
+    }
+
+    @Override
+    public void onBeep(int resource, boolean isRepeat) {
+
+    }
+
+    @Override
+    public void playNotification() {
 
     }
 
@@ -197,6 +207,16 @@ class UnifiedMockDependency implements TimeModel, ClockModel, StopwatchModelList
     @Override
     public void alarm() {
 
+    }
+
+    @Override
+    public void initializeTime(int value) {
+
+    }
+
+    @Override
+    public boolean isInitialState() {
+        return false;
     }
 
     @Override
@@ -225,15 +245,6 @@ class UnifiedMockDependency implements TimeModel, ClockModel, StopwatchModelList
         return runningTime;
     }
 
-    @Override
-    public void setLaptime() {
-        lapTime = runningTime;
-    }
-
-    @Override
-    public int getLaptime() {
-        return lapTime;
-    }
 
     @Override
     public void increment() {
