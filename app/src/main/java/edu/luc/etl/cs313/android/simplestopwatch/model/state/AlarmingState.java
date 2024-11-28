@@ -20,20 +20,6 @@ class AlarmingState implements StopwatchState {
         sm.toAlarmingState();
         //sm.actionAlarm();
     }
-    /* These can allow the user to stop the alarm and reset the stopwatch */
-    @Override
-    public void onIncrement() {
-       // sm.actionAlarmStop();
-        sm.actionReset();
-        sm.toStoppedState();
-    }
-
-    @Override
-    public void onDecrement() {
-       // sm.actionAlarmStop();
-        sm.actionReset();
-        sm.toStoppedState();
-    }
 
     @Override
     public void updateView() {
