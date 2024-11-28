@@ -1,7 +1,7 @@
 package edu.luc.etl.cs313.android.simplestopwatch.model.time;
 
 import static edu.luc.etl.cs313.android.simplestopwatch.common.Constants.*;
-import java.util.function.BooleanSupplier;
+
 
 /**
  * An implementation of the stopwatch data model.
@@ -9,23 +9,7 @@ import java.util.function.BooleanSupplier;
 public class DefaultTimeModel implements TimeModel {
 
     private int runningTime = 0;
-    private final int min;
-    private final int max;
-    private int value;
-
-    public DefaultTimeModel() {
-        this(0,99);
-    }
-    public DefaultTimeModel(int min, int max) {
-        if (min >= max) {
-            throw new IllegalArgumentException("min >= max");
-        }
-        this.min = min;
-        this.max = max;
-        this.value = min;
-    }
-
-    //private int lapTime = -1;
+    private int lapTime = -1;
 
     @Override
     public void resetRuntime() {
@@ -34,7 +18,9 @@ public class DefaultTimeModel implements TimeModel {
 
     @Override
     public void incRuntime() {
-        runningTime = (runningTime + SEC_PER_TICK) % SEC_PER_HOUR;
+        if (runningTime < MAX_RUN_TIME){
+            runningTime= (runningTime + SEC_PER_TICK) % SEC_PER_HOUR;
+        }
     }
 
     @Override
@@ -42,58 +28,14 @@ public class DefaultTimeModel implements TimeModel {
         return runningTime;
     }
 
-//    @Override
-//    public void setLaptime() {
-//        lapTime = runningTime;
-//    }
-
-//    //@Override
-//    //public int getLaptime() {
-//        return lapTime;
-//    }
-
-    protected boolean dataInvariant() {
-        return min <= value && value <= max;
+    @Override
+    public void setRuntime(int runtime) {
+        runningTime = runtime;
     }
 
     @Override
-    public void increment() {
-        assertIfDebug(() -> dataInvariant() && !isFull());
-        if (!isFull()) {
-            ++value;
-         }
-        assertIfDebug(this::dataInvariant);
+    public void decRuntime() {
+        runningTime = (runningTime - SEC_PER_TICK) % SEC_PER_HOUR;
     }
 
-    @Override
-    public void decrement() {
-        assertIfDebug(() -> dataInvariant() && !isEmpty());
-        if(!isFull()) { //Makes sure value doesn't go out of bounds
-            --value;
-        }
-        assertIfDebug(this::dataInvariant);
-    }
-
-    @Override
-    public int get() {
-        return value;
-    }
-
-    @Override
-    public boolean isFull() {
-        return value >= max;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return value <= min;
-    }
-
-    protected void assertIfDebug(final BooleanSupplier p) {
-
-//    if (BuildConfig.DEBUG && !p.getAsBoolean()) {
-//      throw new AssertionError();
-
-
-    }
 }

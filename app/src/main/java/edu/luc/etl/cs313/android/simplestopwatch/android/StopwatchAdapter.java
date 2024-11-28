@@ -112,7 +112,7 @@ public class StopwatchAdapter extends Activity implements StopwatchModelListener
     }
 
     @Override
-    public void onBeep(int resource, boolean isRepeat){
+    public void onBeep(){
         playSound(R.raw.beep, false);
     }
 

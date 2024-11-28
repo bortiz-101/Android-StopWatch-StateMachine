@@ -12,6 +12,6 @@ public interface StopwatchModelListener {
     void onStateUpdate(int stateId);
     void onAlarm();
     void onStopAlarm();
-    void onBeep(int resource, boolean isRepeat);
+    void onBeep();
     void playNotification();
 }

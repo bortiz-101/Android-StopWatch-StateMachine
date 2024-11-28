@@ -185,7 +185,7 @@ class UnifiedMockDependency implements TimeModel, ClockModel, StopwatchModelList
     }
 
     @Override
-    public void onBeep(int resource, boolean isRepeat) {
+    public void onBeep() {
 
     }
 

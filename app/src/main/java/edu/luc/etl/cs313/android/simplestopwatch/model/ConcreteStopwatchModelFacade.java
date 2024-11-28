@@ -55,10 +55,4 @@ public class ConcreteStopwatchModelFacade implements StopwatchModelFacade {
         return false;
     }
 
-
-   /* @Override
-    public void onLapReset() {
-        stateMachine.onLapReset();
-    }*/
-
 }

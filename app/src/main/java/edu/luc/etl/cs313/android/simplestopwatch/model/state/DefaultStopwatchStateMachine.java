@@ -52,27 +52,32 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
     private final StopwatchState RUNNING     = new RunningState(this);
     private final StopwatchState INCREMENTING = new IncrementingState(this);
     private final StopwatchState ALARMING     = new AlarmingState(this);
-  //  private final StopwatchState LAP_RUNNING = new LapRunningState(this);
- //   private final StopwatchState LAP_STOPPED = new LapStoppedState(this);
+    private final StopwatchState SETTING      = new SettingState(this);
+
 
     // transitions
     @Override public void toRunningState()    { setState(RUNNING); }
     @Override public void toStoppedState()    { setState(STOPPED); }
     @Override public void toIncrementingState()  { setState(INCREMENTING); }
     @Override public void toAlarmingState()   { setState(ALARMING); }
- //   @Override public void toLapRunningState() { setState(LAP_RUNNING); }
- //   @Override public void toLapStoppedState() { setState(LAP_STOPPED); }
+    @Override public void toSettingState()    { setState(SETTING); }
 
     // actions
     @Override public void actionInit()       { toStoppedState(); actionReset(); }
     @Override public void actionReset()      { timeModel.resetRuntime(); actionUpdateView(); }
     @Override public void actionStart()      { clockModel.start(); }
     @Override public void actionStop()       { clockModel.stop(); }
-   // @Override public void actionAlarm()      { clockModel.alarm(); }
-    //@Override public void actionAlarmStop()    { clockModel.alarmStop(); }
-//    @Override public void actionLap()        { timeModel.setLaptime(); }
-    @Override public void actionInc()        { timeModel.increment(); actionUpdateView(); }
-    @Override public void actionDec()        { timeModel.decrement(); actionUpdateView(); }
-    @Override public void actionGet()        { timeModel.get(); }
+    @Override public void actionInc()        { timeModel.incRuntime(); actionUpdateView(); }
+    @Override public void actionDec()        { timeModel.decRuntime(); actionUpdateView(); }
     @Override public void actionUpdateView() { state.updateView(); }
+    @Override public void actionSetRuntime(int value) { timeModel.setRuntime(value); actionUpdateView(); }
+    @Override public int actionGetRuntime()   { return timeModel.getRuntime(); }
+    @Override public void actionBeep()       { listener.onBeep();}
+    @Override public void actionOnAlarm()    { listener.onAlarm();}
+    @Override public void actionOnStopAlarm()  { listener.onStopAlarm();}
+
+
+    //helpers
+    @Override public boolean isStopped(){ return state.getId() == STOPPED.getId(); }
+
 }
