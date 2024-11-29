@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+import edu.luc.etl.cs313.android.simplestopwatch.model.clock.TickListener;
 import org.junit.Test;
 
 import edu.luc.etl.cs313.android.simplestopwatch.model.clock.ClockModel;
@@ -44,7 +45,17 @@ public abstract class AbstractClockModelTest {
         // use a thread-safe object because the timer inside the
         // clock has its own thread
         final var i = new AtomicInteger(0);
-        model.setTickListener(i::incrementAndGet);
+        model.setTickListener(new TickListener() {
+            @Override
+            public void onTick() {
+                i.incrementAndGet();
+            }
+
+            @Override
+            public void onStartStop() {
+
+            }
+        });
         Thread.sleep(5500);
         assertEquals(0, i.get());
     }
@@ -57,7 +68,17 @@ public abstract class AbstractClockModelTest {
     @Test
     public void testRunning() throws InterruptedException {
         final var i = new AtomicInteger(0);
-        model.setTickListener(i::incrementAndGet);
+        model.setTickListener(new TickListener() {
+            @Override
+            public void onTick() {
+                 i.incrementAndGet();
+            }
+
+            @Override
+            public void onStartStop() {
+
+            }
+        });
         model.start();
         Thread.sleep(5500);
         model.stop();
