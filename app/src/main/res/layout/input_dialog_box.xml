@@ -10,14 +10,16 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:orientation="vertical">
+
         <TextView
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Enter Initial Time"
+            android:text="@string/enterInitialTime"
             android:textSize="18sp"
             android:textStyle="bold"
             />
+
         <EditText
                 android:id="@+id/etInitialValue"
                 android:layout_width="match_parent"
