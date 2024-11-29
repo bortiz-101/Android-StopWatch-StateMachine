@@ -112,18 +112,12 @@ public abstract class AbstractStopwatchActivityTest {
     }
     protected int getDisplayedValue() {
         final TextView ts = getActivity().findViewById(R.id.seconds);
-        //final TextView tm = getActivity().findViewById(R.id.minutes);
         return tvToInt(ts);
-        //SEC_PER_MIN * tvToInt(tm)
     }
 
     protected Button getStartStopButton() {
         return getActivity().findViewById(R.id.startStop);
     }
-
-//    protected Button getResetLapButton() {
-//        return getActivity().findViewById(R.id.resetLap);
-//    }
 
     /**
      * Explicitly runs tasks scheduled to run on the UI thread in case this is required
