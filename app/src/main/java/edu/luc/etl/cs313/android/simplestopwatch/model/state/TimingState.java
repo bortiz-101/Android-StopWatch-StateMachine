@@ -17,6 +17,8 @@ import edu.luc.etl.cs313.android.simplestopwatch.R;
          return R.string.TIMING;
      }
 
+     /* When timer reaches 0, stop and reset the timer and sound alarm
+     * Otherwise decrease the timer and transition to timing state */
      @Override
      public void onTick() {
         if(sm.actionGetRuntime() == 0){
@@ -30,11 +32,12 @@ import edu.luc.etl.cs313.android.simplestopwatch.R;
         }
      }
 
+     /* Stops and resets stopwatch */
      @Override
      public void onStartStop() {
-        sm.actionStop();
-        sm.actionReset();
-        sm.toStoppedState();
+        sm.actionStop();        //Stop current action
+        sm.actionReset();       //Reset the timer
+        sm.toStoppedState();    //Transition to stopped state
      }
  }
 
