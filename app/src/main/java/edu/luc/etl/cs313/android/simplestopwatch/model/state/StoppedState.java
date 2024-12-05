@@ -12,7 +12,7 @@ class StoppedState implements StopwatchState {
 
     @Override
     public void onStartStop() {
-        sm.toRunningState();
+        sm.toIncrementingState();
         sm.actionStart();
     }
 
