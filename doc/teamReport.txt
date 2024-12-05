@@ -1,0 +1,9 @@
+	Include a brief (300-500 words) report on
+	(0.5) Your Group development journey during this project. Focus on aspects you find noteworthy, e.g., process, pairing, testing, design decisions, refactoring, use of the repository.
+	(0.5) The relationship between your extended state machine model from this project and your actual code. Possible talking points are:
+	What are the similarities and differences between model and code?
+	Is it more effective to code or model first?
+	Now that you have code, what, if any, changes would you make to your model?
+
+I think it is more effective to code first as you can use it to validate what you want to do.
+Using a model without code to
