@@ -1,15 +1,19 @@
-	Include a brief (300-500 words) report on
-	(0.5) Your Group development journey during this project. Focus on aspects you find noteworthy, e.g., process, pairing, testing, design decisions, refactoring, use of the repository.
-	(0.5) The relationship between your extended state machine model from this project and your actual code. Possible talking points are:
-	What are the similarities and differences between model and code?
-	Is it more effective to code or model first?
-	Now that you have code, what, if any, changes would you make to your model?
+Our group development journey was difficult at first looking at this huge program with all these different files trying
+to figure out how everything fits together. How the facade, interfaces, and state machines all worked accordingly with one another was also a
+difficult aspect of this project.
 
+We chose to use the Stopwatch repository as the base because it already had a state machine implemented that we could easily
+adapt to this project. We also found the click counter to be useful with figuring out how to incorporate the alarm sound. The
+design decisions that we made were to separate the incrementing and the timing states , this was not something that we distinguished in our
+state machine model. Separating these two different states made implementing the different states a lot easier instead of doing it all
+in one state. The second design decision was to create a separate interface called "Timeable", which implements the two methods that initialize time
+and checks the initial state. I would say we initially tried to add these methods into the "startable" interface which made things
+more complicated as it is in the clockModel, making more work for implementation, instead we just extended the stopwatch model facade
+with the "Timeable" interface which made things a lot simpler. For refactoring we cleaned up all mentions of lap because it is no
+longer needed , made sure all methods were readable, and the states were easy to understand. {Add Testing}
 
+Our state machine model only differs from our code slightly as we already stated we created a separate interface called
+"Timeable" that extends the stopwatch model facade. If we were able to make changes to our model we implement the separate state.
 
-
-I think it is more effective to code first as you can use it to validate what you want to do rather than
-working off of your model without any sort of validation. The model also may not be an accurate representation of the code
-that was coded making the model useless for others to learn your code. But if you were to code first then shape your model
-based on what works for your code, it can become a useful tool for your teammates and other programmers who may take over
-your code.
+It is more effective to model first as you can identify and reference it in order to validate what a function should do
+or what the next step would be when implementing.
