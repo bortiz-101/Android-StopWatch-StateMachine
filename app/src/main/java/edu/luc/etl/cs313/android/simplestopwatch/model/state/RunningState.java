@@ -10,12 +10,15 @@ class RunningState implements StopwatchState {
 
     private final StopwatchSMStateView sm;
 
+    /* If the button is no longer being pressed after 3 sec
+    * stops current process and transitions to stopped state*/
     @Override
     public void onStartStop() {
         sm.actionStop();
         sm.toStoppedState();
     }
 
+    /* Increments timer */
     @Override
     public void onTick() {
         sm.actionInc();

@@ -10,17 +10,19 @@ class StoppedState implements StopwatchState {
 
     private final StopwatchSMStateView sm;
 
+    /* When the start/stop button is pressed transition to incrementing state
+    * and start incrementing*/
     @Override
     public void onStartStop() {
         sm.toIncrementingState();
         sm.actionStart();
     }
 
+    /* No onTick function */
     @Override
     public void onTick() {
         throw new UnsupportedOperationException("onTick");
     }
-
 
 
     @Override
