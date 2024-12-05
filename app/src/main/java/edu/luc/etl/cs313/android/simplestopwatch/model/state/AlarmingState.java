@@ -9,11 +9,13 @@ class AlarmingState implements StopwatchState {
     }
     private final StopwatchSMStateView sm;
 
+    /*When the button is pressed when alarm is sounding
+    * stop and reset the alarm*/
     @Override
     public void onStartStop() {
-        sm.actionOnStopAlarm();
-        sm.actionReset();
-        sm.toStoppedState();
+        sm.actionOnStopAlarm(); //stop the alarm
+        sm.actionReset();       //reset the alarm
+        sm.toStoppedState();    //transition alarm to stop state
     }
     @Override
     public void onTick() {
