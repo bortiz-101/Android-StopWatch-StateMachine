@@ -103,26 +103,43 @@ public class StopwatchAdapter extends Activity implements StopwatchModelListener
         });
     }
 
-    // forward event listener methods to the model
+    /** forward event listener methods to the model
+     * @param view
+     */
     public void onStartStop(final View view) {
         model.onStartStop();
     }
 
+    /** utilizes playSound for beep sound
+     *
+     */
     @Override
     public void onBeep(){
         playSound(R.raw.beep, false);
     }
 
+    /** utilizes playSound for alarm sound
+     *
+     */
     @Override
     public void onAlarm() {
         playSound(R.raw.alarm, true);
     }
 
+    /** Reusable playSound protected method
+     *
+     * @param resource
+     * @param isRepeat
+     */
     protected void playSound(int resource, boolean isRepeat){
         mediaPlayer = MediaPlayer.create(this, resource);
         mediaPlayer.setLooping(isRepeat);
         mediaPlayer.start();
     }
+
+    /** Stops mediaPlayer activity
+     *
+     */
 
     @Override
     public void onStopAlarm() {
@@ -132,8 +149,9 @@ public class StopwatchAdapter extends Activity implements StopwatchModelListener
     }
 
 
-
-
+    /** Sets up initial application startup notification
+     *
+     */
     protected void playNotification(){
         final Uri defaultRingtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         final MediaPlayer mediaPlayer = new MediaPlayer();
@@ -153,7 +171,9 @@ public class StopwatchAdapter extends Activity implements StopwatchModelListener
         }
     }
 
-    // show dialog to take initial value for the time
+    /** show dialog to take initial value for the time
+     *
+     */
     private void showInputDialog() {
         LayoutInflater li = LayoutInflater.from(this);
         View promptsView = li.inflate(R.layout.input_dialog_box, null);

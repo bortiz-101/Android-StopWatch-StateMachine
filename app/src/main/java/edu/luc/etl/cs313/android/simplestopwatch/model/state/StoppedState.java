@@ -27,11 +27,11 @@ class StoppedState implements StopwatchState {
 
     @Override
     public void updateView() {
-        sm.updateUIRuntime();
+        sm.updateUIRuntime(); // updates UI with current RunTime
     }
 
     @Override
     public int getId() {
-        return R.string.STOPPED;
+        return R.string.STOPPED; // updates State dialog box with current state
     }
 }

@@ -19,18 +19,18 @@ class AlarmingState implements StopwatchState {
     }
     @Override
     public void onTick() {
-        throw new UnsupportedOperationException("onTick");
+        throw new UnsupportedOperationException("onTick"); //no tick event in AlarmingState
 
     }
 
     @Override
     public void updateView() {
-        sm.updateUIRuntime();
+        sm.updateUIRuntime(); // updates android UI
     }
 
     @Override
     public int getId() {
-        return R.string.ALARMING;
+        return R.string.ALARMING; // updates State dialog box with current state
     }
 
 

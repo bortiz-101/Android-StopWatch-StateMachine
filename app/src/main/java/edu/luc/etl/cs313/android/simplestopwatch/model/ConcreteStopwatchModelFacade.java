@@ -21,6 +21,7 @@ public class ConcreteStopwatchModelFacade implements StopwatchModelFacade {
 
     private final TimeModel timeModel;
 
+    // sets up all necessary objects
     public ConcreteStopwatchModelFacade() {
         timeModel = new DefaultTimeModel();
         clockModel = new DefaultClockModel();
@@ -28,29 +29,33 @@ public class ConcreteStopwatchModelFacade implements StopwatchModelFacade {
         clockModel.setTickListener(stateMachine);
     }
 
+    //initializes the state machine
     @Override
     public void start() {
-        stateMachine.actionInit();
+        stateMachine.actionInit(); // sends to StoppedState and resets timer
     }
 
-
+    // initializes the statemachine listener for StopwatchUIListener, TickListener,
+    // StopwatchModelSource, StopwatchSMStateView
     @Override
     public void setModelListener(final StopwatchModelListener listener) {
         stateMachine.setModelListener(listener);
     }
 
+    // applies UI listener for button presses to the statemachine
     @Override
     public void onStartStop() {
         stateMachine.onStartStop();
     }
 
-
+    // Initializes running time
     @Override
     public void initializeTime(int value) {
         stateMachine.actionSetRuntime(value);
 
     }
 
+    // Sets the initial state of the state machine to stopped
     @Override
     public boolean isInitialState() {
         return stateMachine.isStopped();

@@ -59,6 +59,6 @@ import static edu.luc.etl.cs313.android.simplestopwatch.common.Constants.MAX_RUN
 
      @Override
      public int getId() {
-         return R.string.INCREMENTING;
+         return R.string.INCREMENTING; // updates State dialog box with current state
      }
 }
