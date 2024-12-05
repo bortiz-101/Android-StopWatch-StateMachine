@@ -13,7 +13,7 @@ class AlarmingState implements StopwatchState {
     * stop and reset the alarm*/
     @Override
     public void onStartStop() {
-        sm.actionOnStopAlarm(); //stop the alarm
+        sm.actionOnStopAlarm(); // stop the alarm
         sm.actionReset();       //reset the alarm
         sm.toStoppedState();    //transition alarm to stop state
     }
