@@ -5,5 +5,11 @@
 	Is it more effective to code or model first?
 	Now that you have code, what, if any, changes would you make to your model?
 
-I think it is more effective to code first as you can use it to validate what you want to do.
-Using a model without code to
+
+
+
+I think it is more effective to code first as you can use it to validate what you want to do rather than
+working off of your model without any sort of validation. The model also may not be an accurate representation of the code
+that was coded making the model useless for others to learn your code. But if you were to code first then shape your model
+based on what works for your code, it can become a useful tool for your teammates and other programmers who may take over
+your code.
