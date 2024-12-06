@@ -229,28 +229,5 @@ class UnifiedMockDependency implements TimeModel, ClockModel, StopwatchModelList
 
 
 }
-//    @Override
-//    public void increment() {
-//
-//    }
-//
-//    @Override
-//    public void decrement() {
-//
-//    }
-//
-//    @Override
-//    public int get() {
-//        return 0;
-//    }
-//
-//    @Override
-//    public boolean isFull() {
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean isEmpty() {
-//        return false;
-//    }
-//}
+
+

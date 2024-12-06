@@ -1,7 +1,10 @@
 package edu.luc.etl.cs313.android.simplestopwatch.test.model;
 
+import org.junit.Test;
 import org.junit.After;
 import org.junit.Before;
+import static org.junit.Assert.assertEquals;
+import edu.luc.etl.cs313.android.simplestopwatch.R;
 
 import edu.luc.etl.cs313.android.simplestopwatch.model.state.DefaultStopwatchStateMachine;
 
@@ -10,9 +13,11 @@ import edu.luc.etl.cs313.android.simplestopwatch.model.state.DefaultStopwatchSta
  * implementation.
  *
  * @author laufer
- * @see http://xunitpatterns.com/Testcase%20Superclass.html
+// * @see  ://xunitpatterns.com/Testcase%20Superclass.html
  */
 public class DefaultStopwatchStateMachineTest extends AbstractStopwatchStateMachineTest {
+    private DefaultStopwatchStateMachine stateMachine;
+
 
     @Before
     public void setUp() throws Exception {
@@ -26,29 +31,30 @@ public class DefaultStopwatchStateMachineTest extends AbstractStopwatchStateMach
         super.tearDown();
     }
 
-    /**
-    * Tests if the state transition from IncrementingState to TimingState
-    * is functional after 3 ticks while runtime is greater than 0.
-    */
+
+    /*
+     * Tests if the state transition from IncrementingState to TimingState
+     * is functional after 3 ticks while runtime is greater than 0.
+     */
     @Test
     public void testIncrementingToTimingTransition() {
         stateMachine.toIncrementingState();
         for (int i = 0; i < 3; i++) {
             stateMachine.onTick();
         }
-        assertEquals(TIMING_STATE_ID, stateMachine.getCurrentState().getId());
+        assertEquals(R.string.TIMING, stateMachine.actionGetRuntime()); //OG: getCurrentState().getId();
     }
 
-    /**
-    * Tests if the the state transition to AlarmingState after runtime reaches 0 in 
-    * TimingState is functional.
-    */
+    /*
+     * Tests if  the state transition to AlarmingState after runtime reaches 0 in
+     * TimingState is functional.
+     */
     @Test
     public void testTimingToAlarmingTransition() {
         stateMachine.toTimingState();
         while (stateMachine.actionGetRuntime() > 0) {
             stateMachine.onTick();
         }
-        assertEquals(ALARMING_STATE_ID, stateMachine.getCurrentState().getId());
+        assertEquals(R.string.ALARMING, stateMachine.actionGetRuntime()); //OG: getCurrentState().getId();
     }
 }

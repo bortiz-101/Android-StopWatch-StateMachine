@@ -1,7 +1,10 @@
 package edu.luc.etl.cs313.android.simplestopwatch.test.model;
 
+import edu.luc.etl.cs313.android.simplestopwatch.model.time.TimeModel;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 import edu.luc.etl.cs313.android.simplestopwatch.model.time.DefaultTimeModel;
 
@@ -9,9 +12,10 @@ import edu.luc.etl.cs313.android.simplestopwatch.model.time.DefaultTimeModel;
  * Concrete testcase subclass for the default time model implementation.
  *
  * @author laufer
- * @see http://xunitpatterns.com/Testcase%20Superclass.html
+// * @see http://xunitpatterns.com/Testcase%20Superclass.html
  */
 public class DefaultTimeModelTest extends AbstractTimeModelTest {
+    TimeModel model;
 
     @Before
     public void setUp() throws Exception {
@@ -29,6 +33,7 @@ public class DefaultTimeModelTest extends AbstractTimeModelTest {
     */
     @Test
     public void testIncrementRuntime() {
+
         model.setRuntime(58);
         model.incRuntime();
         assertEquals(59, model.getRuntime());

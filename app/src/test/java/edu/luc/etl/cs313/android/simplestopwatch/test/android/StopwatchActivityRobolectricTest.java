@@ -12,11 +12,11 @@ import org.robolectric.annotation.Config;
  * the Robolectric dependency needs to be isolated here instead of being present in src/main.
  *
  * @author laufer
- * @see http://pivotal.github.com/robolectric
+// * @see http://pivotal.github.com/robolectric
  */
 @RunWith(RobolectricTestRunner.class)
 @Config(sdk = 23)
-public class StopwatchActivityRobolectric extends AbstractStopwatchActivityTest {
+public class StopwatchActivityRobolectricTest extends AbstractStopwatchActivityTest {
 
     private static String TAG = "stopwatch-android-activity-robolectric";
 
@@ -37,4 +37,5 @@ public class StopwatchActivityRobolectric extends AbstractStopwatchActivityTest 
         // Robolectric requires us to run the scheduled tasks explicitly!
         org.robolectric.shadows.ShadowLooper.runUiThreadTasks();
     }
+
 }

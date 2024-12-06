@@ -40,6 +40,7 @@ public abstract class AbstractClockModelTest {
      *
      * @throws InterruptedException
      */
+
     @Test
     public void testStopped() throws InterruptedException {
         // use a thread-safe object because the timer inside the

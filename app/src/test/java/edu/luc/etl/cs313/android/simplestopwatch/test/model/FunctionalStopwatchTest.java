@@ -1,6 +1,13 @@
 package edu.luc.etl.cs313.android.simplestopwatch.test.model;
 
+import edu.luc.etl.cs313.android.simplestopwatch.R;
+import edu.luc.etl.cs313.android.simplestopwatch.common.StopwatchModelListener;
+import static edu.luc.etl.cs313.android.simplestopwatch.common.Constants.MAX_RUN_TIME;
+
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
 import edu.luc.etl.cs313.android.simplestopwatch.model.clock.DefaultClockModel;
 import edu.luc.etl.cs313.android.simplestopwatch.model.state.DefaultStopwatchStateMachine;
 import edu.luc.etl.cs313.android.simplestopwatch.model.time.DefaultTimeModel;
@@ -14,6 +21,7 @@ public class FunctionalStopwatchTest {
     private DefaultClockModel clockModel;
     private DefaultTimeModel timeModel;
     private DefaultStopwatchStateMachine stateMachine;
+    private StopwatchModelListener listener;
 
     public FunctionalStopwatchTest() {
         // Object initializations
@@ -35,15 +43,15 @@ public class FunctionalStopwatchTest {
         for (int i = 0; i < 3; i++) {
             stateMachine.onTick(); // Increment for 3 seconds
         }
-        assertEquals(TIMING_STATE_ID, stateMachine.getCurrentState().getId());
+        assertEquals(R.string.TIMING, stateMachine.getCurrentStateId.getId());
 
         while (stateMachine.actionGetRuntime() > 0) {
             stateMachine.onTick(); // Countdown
         }
-        assertEquals(ALARMING_STATE_ID, stateMachine.getCurrentState().getId());
+        assertEquals(R.string.ALARMING, stateMachine.getCurrentStateId.getId());
 
         stateMachine.onStartStop(); // Stop alarm
-        assertEquals(STOPPED_STATE_ID, stateMachine.getCurrentState().getId());
+        assertEquals(R.string.STOPPED, stateMachine.getCurrentStateId.getId());
     }
 
     /**
