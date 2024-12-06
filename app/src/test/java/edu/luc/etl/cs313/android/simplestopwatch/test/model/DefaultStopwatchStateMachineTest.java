@@ -25,4 +25,30 @@ public class DefaultStopwatchStateMachineTest extends AbstractStopwatchStateMach
         setModel(null);
         super.tearDown();
     }
+
+    /**
+    * Tests if the state transition from IncrementingState to TimingState
+    * is functional after 3 ticks while runtime is greater than 0.
+    */
+    @Test
+    public void testIncrementingToTimingTransition() {
+        stateMachine.toIncrementingState();
+        for (int i = 0; i < 3; i++) {
+            stateMachine.onTick();
+        }
+        assertEquals(TIMING_STATE_ID, stateMachine.getCurrentState().getId());
+    }
+
+    /**
+    * Tests if the the state transition to AlarmingState after runtime reaches 0 in 
+    * TimingState is functional.
+    */
+    @Test
+    public void testTimingToAlarmingTransition() {
+        stateMachine.toTimingState();
+        while (stateMachine.actionGetRuntime() > 0) {
+            stateMachine.onTick();
+        }
+        assertEquals(ALARMING_STATE_ID, stateMachine.getCurrentState().getId());
+    }
 }

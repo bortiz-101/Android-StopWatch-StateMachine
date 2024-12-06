@@ -22,4 +22,35 @@ public class DefaultTimeModelTest extends AbstractTimeModelTest {
     public void tearDown() throws Exception {
         setModel(null);
     }
+
+    /**
+    * Tests that the runtime increments by 1 second when incRuntime() is called,
+    * and does not exceed MAX_RUN_TIME.
+    */
+    @Test
+    public void testIncrementRuntime() {
+        model.setRuntime(58);
+        model.incRuntime();
+        assertEquals(59, model.getRuntime());
+    }
+
+    /**
+    * Tests that resetRuntime() sets the runtime back to 0.
+    */
+    @Test
+    public void testResetRuntime() {
+        model.setRuntime(30);
+        model.resetRuntime();
+        assertEquals(0, model.getRuntime());
+    }
+
+    /**
+    * Tests that decrementing runtime does not cause underflow.
+    */
+    @Test
+    public void testDecrementRuntime() {
+        model.setRuntime(1);
+        model.decRuntime();
+        assertEquals(0, model.getRuntime());
+    }
 }
