@@ -18,16 +18,45 @@ import edu.luc.etl.cs313.android.simplestopwatch.model.time.DefaultTimeModel;
  */
 public class FunctionalStopwatchTest {
 
-    private DefaultClockModel clockModel;
-    private DefaultTimeModel timeModel;
-    private DefaultStopwatchStateMachine stateMachine;
+    private final DefaultStopwatchStateMachine stateMachine;
     private StopwatchModelListener listener;
 
     public FunctionalStopwatchTest() {
         // Object initializations
-        timeModel = new DefaultTimeModel();
-        clockModel = new DefaultClockModel();
+        DefaultTimeModel timeModel = new DefaultTimeModel();
+        DefaultClockModel clockModel = new DefaultClockModel();
         stateMachine = new DefaultStopwatchStateMachine(timeModel, clockModel);
+
+        // Set up a simple listener to avoid NullPointerException
+        listener = new StopwatchModelListener() {
+            @Override
+            public void onTimeUpdate(int timeValue) {
+                // No operation needed for this test
+            }
+
+            @Override
+            public void onStateUpdate(int stateId) {
+                // No operation needed for this test
+            }
+
+            @Override
+            public void onAlarm() {
+                // No operation needed for this test
+            }
+
+            @Override
+            public void onStopAlarm() {
+                // No operation needed for this test
+            }
+
+            @Override
+            public void onBeep() {
+                // No operation needed for this test
+            }
+        };
+
+        // Set the listener in the state machine
+        stateMachine.setModelListener(listener);
         stateMachine.actionInit();
     }
 
@@ -37,21 +66,22 @@ public class FunctionalStopwatchTest {
      * after the alarm is stopped.
      */
     @Test
-    public void testFullStopwatchFlow() {
+    public void testFullStopwatchFlow() throws NoSuchFieldException {
         stateMachine.toStoppedState();
         stateMachine.onStartStop(); // Increment
         for (int i = 0; i < 3; i++) {
             stateMachine.onTick(); // Increment for 3 seconds
         }
-        assertEquals(R.string.TIMING, stateMachine.getCurrentStateId.getId());
+
+        assertEquals(R.string.TIMING, stateMachine.getCurrentStateId());
 
         while (stateMachine.actionGetRuntime() > 0) {
             stateMachine.onTick(); // Countdown
         }
-        assertEquals(R.string.ALARMING, stateMachine.getCurrentStateId.getId());
+        assertEquals(R.string.ALARMING, stateMachine.getCurrentStateId());
 
         stateMachine.onStartStop(); // Stop alarm
-        assertEquals(R.string.STOPPED, stateMachine.getCurrentStateId.getId());
+        assertEquals(R.string.STOPPED, stateMachine.getCurrentStateId());
     }
 
     /**
