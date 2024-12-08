@@ -27,10 +27,11 @@ android {
     defaultConfig {
         applicationId "edu.luc.etl.cs313.android.clickcounter"
         minSdkVersion 23
+        //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         debug {
@@ -61,11 +62,14 @@ android {
 }
 
 dependencies {
-    // several duplications on account of shared testcase superclass
-    testImplementation 'junit:junit:4.13'
-    testImplementation 'com.android.support.test:rules:1.0.2'
-    testImplementation 'org.robolectric:robolectric:4.4'
-    androidTestImplementation 'junit:junit:4.13'
-    androidTestImplementation 'com.android.support.test:rules:1.0.2'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    // JUnit for unit testing
+    testImplementation 'junit:junit:4.13.2'
+
+    // AndroidX Testing Libraries
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+
+    // Robolectric for unit testing
+    testImplementation 'org.robolectric:robolectric:4.8'
+    androidTestImplementation project(':app')
 }

@@ -30,6 +30,10 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
         listener.onStateUpdate(state.getId());
     }
 
+    public int getCurrentStateId() {
+        return state.getId();
+    }
+
     private StopwatchModelListener listener;
 
     @Override
